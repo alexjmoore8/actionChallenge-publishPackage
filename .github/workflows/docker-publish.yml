@@ -69,17 +69,10 @@ jobs:
           
   test:
     name: Test
-    runs-on: ubuntu-latest
     needs: build
-    permissions:
-      contents: read
-      packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
-      id-token: write
+    runs-on: ubuntu-latest
     steps:
-     - uses: docker run ghcr.io/repo/${{ env.IMAGE_NAME }}:main
-       with:
-        args: "container"
+      - name: Run Docker image to test it
+        uses: docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main | grep container && echo "TEST PASSED"
     
       
