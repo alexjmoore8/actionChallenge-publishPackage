@@ -73,6 +73,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Docker image to test it
-        uses: docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main | grep container && echo "TEST PASSED"
+        run: docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main | grep container && echo "TEST PASSED"
     
       
